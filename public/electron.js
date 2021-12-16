@@ -48,6 +48,7 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.on("whatIsTime", async (event, arg) => {
-    event.returnValue = lib.time()
+
+ipcMain.handle("whatIsTime", (event, arg) => {
+  event.returnValue = lib.time()
 })

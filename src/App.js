@@ -2,7 +2,30 @@ import logo from './logo.svg';
 import './App.css';
 import { render } from '@testing-library/react';
 import React from 'react';
+import * as Chakra from 'chakra-ui'
 const { ipcRenderer, remote } = require('electron');
+
+class Timer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { time: "--:--:--" }
+  }
+
+  componentDidMount() {
+    let setState = this.setState.bind(this)
+    this.interval = setInterval(() => ipcRenderer.invoke("whatIsTime").then((t) => {setState({ time: t })}), 500)
+  }
+
+  render() {
+    return (
+      <span>
+        { this.state.time }
+      </span>
+    )
+  }
+}
+
+
 
 class App extends React.Component {
   render() {
@@ -19,8 +42,9 @@ class App extends React.Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
-
+            Learn React<p>
+            <Timer />
+            </p>
           </a>
         </header>
       </div>
