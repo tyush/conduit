@@ -19,7 +19,7 @@ class Timer extends React.Component {
   render() {
     return (
       <span>
-        { this.state.time }
+        Chrono Time: { this.state.time }
       </span>
     )
   }

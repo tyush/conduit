@@ -50,5 +50,5 @@ app.on('activate', () => {
 
 
 ipcMain.handle("whatIsTime", (event, arg) => {
-  event.returnValue = lib.time()
+  return lib.time()
 })
